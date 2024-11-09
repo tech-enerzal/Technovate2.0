@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>SUPPLYZAL</title>
+
+    <!-- Google Fonts -->
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=K2D:wght@400;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="css/style.css" />
+  </head>
+  <body>
+    <!-- Navbar -->
+    <div class="navbar">
+      <div class="logo">SUPPLYZAL</div>
+      <div>
+        <a href="#home">Home</a>
+        <a href="#features">Features</a>
+        <a href="#about">About</a>
+        <a href="#contact">Contact</a>
+        <a href="#signup" class="btn btn-glow">Sign Up</a>
+      </div>
+    </div>
+
+    <!-- Hero Section -->
+    <div class="hero" id="home">
+      <h1>Revolutionizing Supply Chain Transparency</h1>
+      <p>
+        Track products from raw material to consumer with sustainability and
+        integrity.
+      </p>
+      <div>
+        <a href="#track-product" class="btn">Track Your Product</a>
+        <a href="#learn-more" class="btn">Learn More</a>
+      </div>
+    </div>
+
+    <!-- Problem + Solution Section -->
+    <div class="problem-solution" id="learn-more">
+      <h2>The Problem</h2>
+      <p>
+        Supply chains are complex and often opaque, making it hard for consumers
+        to know where their products come from, or the environmental impact
+        behind their creation. This lack of transparency leads to unethical
+        sourcing and unsustainable practices that harm the environment.
+      </p>
+      <h2>Our Solution</h2>
+      <p>
+        SUPPLYZAL uses blockchain technology to provide complete transparency in
+        product sourcing, production, and distribution. By tracking products
+        throughout their lifecycle, we ensure sustainability and ethical
+        sourcing every step of the way.
+      </p>
+    </div>
+
+    <!-- About Section -->
+    <div class="about" id="about">
+      <h2>About SUPPLYZAL</h2>
+      <p>
+        SUPPLYZAL was founded with the vision of creating a more sustainable and
+        transparent world by revolutionizing how supply chains operate. Using
+        cutting-edge blockchain technology, we aim to build trust and
+        accountability between businesses, consumers, and the environment.
+      </p>
+      <div class="team">
+        <div class="team-member">
+          <img src="https://via.placeholder.com/120" alt="Team Member" />
+          <h3>Jane Doe</h3>
+          <p>CEO & Founder</p>
+        </div>
+        <div class="team-member">
+          <img src="https://via.placeholder.com/120" alt="Team Member" />
+          <h3>John Smith</h3>
+          <p>CTO</p>
+        </div>
+        <div class="team-member">
+          <img src="https://via.placeholder.com/120" alt="Team Member" />
+          <h3>Amy Lee</h3>
+          <p>COO</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Features Section -->
+    <div class="features" id="features">
+      <div class="feature">
+        <img
+          src="https://img.icons8.com/ios/452/feedback.png"
+          alt="Blockchain Tracking"
+        />
+        <h3>Blockchain Tracking</h3>
+        <p>
+          We use blockchain to ensure full transparency in the supply chain,
+          making it tamper-proof and verifiable.
+        </p>
+      </div>
+      <div class="feature">
+        <img
+          src="https://img.icons8.com/ios/452/insight.png"
+          alt="Environmental Impact"
+        />
+        <h3>Environmental Impact</h3>
+        <p>
+          Measure the carbon footprint and sustainability metrics of products
+          throughout their lifecycle.
+        </p>
+      </div>
+      <div class="feature">
+        <img
+          src="https://img.icons8.com/ios/452/sustainability.png"
+          alt="Sustainability Metrics"
+        />
+        <h3>Sustainability Metrics</h3>
+        <p>
+          Track and improve sustainability practices with easy-to-read reports
+          and metrics.
+        </p>
+      </div>
+    </div>
+
+    <!-- Contact Section -->
+    <div class="contact-section" id="contact">
+      <h2>Get In Touch</h2>
+      <div class="contact-form">
+        <form action="#" method="post">
+          <input type="text" name="name" placeholder="Your Name" required />
+          <input type="email" name="email" placeholder="Your Email" required />
+          <textarea
+            name="message"
+            placeholder="Your Message"
+            required
+          ></textarea>
+          <button type="submit">Send Message</button>
+        </form>
+      </div>
+
+      <div class="contact-info">
+        <p>If you have any questions, feel free to reach out to us:</p>
+        <p>Email: <a href="mailto:info@supplyzal.com">info@supplyzal.com</a></p>
+        <p>Phone: +1 234 567 890</p>
+      </div>
+
+      <div class="social-links">
+        <a href="https://www.facebook.com/supplyzal" target="_blank">Facebook</a>
+        <a href="https://www.twitter.com/supplyzal" target="_blank">Twitter</a>
+        <a href="https://www.linkedin.com/company/supplyzal" target="_blank">LinkedIn</a>
+      </div>
+    </div>
+
+    <!-- Footer Section -->
+    <div class="footer">
+      <p>&copy; 2024 SUPPLYZAL. All rights reserved.</p>
+      <a href="#home">Home</a>
+      <a href="#features">Features</a>
+      <a href="#about">About</a>
+      <a href="#contact">Contact</a>
+    </div>
+
+    <!-- Smooth Scrolling Script -->
+    <script>
+      document.querySelectorAll('.navbar a').forEach(anchor => {
+        anchor.addEventListener('click', function (e) {
+          e.preventDefault();
+          const targetId = this.getAttribute('href').substring(1);
+          const targetSection = document.getElementById(targetId);
+
+          window.scrollTo({
+            top: targetSection.offsetTop - 70,
+            behavior: 'smooth'
+          });
+        });
+      });
+    </script>
+  </body>
+</html>
