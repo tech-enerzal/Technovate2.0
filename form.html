@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Environmental Sustainability Assessment</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        * {
+            box-sizing: border-box;
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            background-color: #f1e3d4; /* Light beige background */
+            color: #821131;
+            animation: fadeIn 1s ease-in;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+        .container {
+            background: linear-gradient(145deg, #fff8e7, #f7e0c6);
+            border-radius: 15px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            width: 90%; /* Increased width */
+            max-width: 900px; /* Set max-width for larger screens */
+            padding: 40px;
+            margin: 20px;
+            position: relative;
+            overflow: hidden;
+        }
+        .container h1 {
+            text-align: center;
+            font-size: 1.8em;
+            margin-bottom: 20px;
+            color: #821131;
+        }
+        .form-group {
+            margin-bottom: 20px;
+            position: relative;
+            display: flex;
+            flex-direction: column;
+        }
+        label {
+            font-size: 1em;
+            color: #821131;
+            margin-bottom: 5px;
+        }
+        input[type="text"],
+        input[type="number"] {
+            width: 100%;
+            padding: 10px 15px 10px 45px; /* Increased padding for icon */
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            font-size: 1em;
+            transition: border 0.3s ease, box-shadow 0.3s ease;
+        }
+        input[type="text"]:focus,
+        input[type="number"]:focus {
+            border-color: #FDBF57;
+            outline: none;
+            box-shadow: 0 0 8px rgba(253, 191, 87, 0.5);
+        }
+        .select-container select {
+            padding: 10px;
+            border-radius: 8px;
+            border: 1px solid #FDBF57;
+            color: #821131;
+            font-size: 1em;
+            transition: border 0.3s ease;
+            width: 100%;
+        }
+        .checkbox-group label {
+            font-size: 1em;
+            margin-right: 15px;
+            color: #821131;
+        }
+        .checkbox-group input[type="checkbox"] {
+            margin-right: 5px;
+            accent-color: #FDBF57;
+            transition: transform 0.2s;
+        }
+        .checkbox-group input[type="checkbox"]:hover {
+            transform: scale(1.1);
+        }
+        .form-group i {
+            position: absolute;
+            left: 15px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: #FDBF57;
+            font-size: 1.2em;
+            transition: color 0.3s ease;
+        }
+        input[type="text"]:focus + i,
+        input[type="number"]:focus + i {
+            color: #821131;
+        }
+        hr {
+            border: 0;
+            height: 1px;
+            background-color: #FDBF57;
+            margin: 20px 0;
+        }
+        .form-group span {
+            margin-left: 10px;
+            color: #821131;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h1>Environmental Sustainability Assessment</h1>
+
+    <div class="select-container form-group">
+        <label for="monthYear">Select Month/Year:</label>
+        <select id="monthYear">
+            <option>April 2022</option>
+            <option>May 2022</option>
+            <option>June 2022</option>
+            <!-- Add more options as needed -->
+        </select>
+    </div>
+
+    <hr>
+
+    <h2>Monthly KPI Update</h2>
+
+    <div class="form-group">
+        <label for="energyUsed">1 - Total amount of energy used per month</label>
+        <input type="number" id="energyUsed" placeholder="100">
+        <i class="fas fa-bolt"></i>
+        <span>kWh/ month</span>
+    </div>
+
+    <div class="form-group">
+        <label for="renewableEnergy">2 - Total amount of renewable energy used in energy consumption per month</label>
+        <input type="number" id="renewableEnergy" placeholder="40">
+        <i class="fas fa-leaf"></i>
+        <span>kWh/ month</span>
+    </div>
+
+    <div class="form-group">
+        <label for="waterUsed">3 - Total amount of water used per month</label>
+        <input type="number" id="waterUsed" placeholder="80">
+        <i class="fas fa-tint"></i>
+        <span>m³/ month</span>
+    </div>
+
+    <div class="form-group">
+        <label for="recycledWater">4 - Total amount of recycled or reused water used in water consumption per month</label>
+        <input type="number" id="recycledWater" placeholder="20">
+        <i class="fas fa-recycle"></i>
+        <span>m³/ month</span>
+    </div>
+
+    <div class="form-group">
+        <label for="materialsUsed">5 - Total amount of materials other than water used per month</label>
+        <input type="number" id="materialsUsed" placeholder="100">
+        <i class="fas fa-cube"></i>
+        <span>kg/ month</span>
+    </div>
+
+    <div class="form-group">
+        <label for="recycledMaterials">6 - Total amount of recycled or reused materials in material consumption per month</label>
+        <input type="number" id="recycledMaterials" placeholder="40">
+        <i class="fas fa-sync-alt"></i>
+        <span>kg/ month</span>
+    </div>
+
+    <div class="form-group">
+        <label for="emissions">7 - Total amount of greenhouse gas emissions generated per month</label>
+        <input type="number" id="emissions" placeholder="0.04" step="0.01">
+        <i class="fas fa-smog"></i>
+        <span>tonnes of CO₂e/ month</span>
+    </div>
+
+    <div class="form-group">
+        <label for="waterPollution">8 - Total amount of water pollution generated per month</label>
+        <input type="number" id="waterPollution" placeholder="0">
+        <i class="fas fa-water"></i>
+        <span>m³/ month</span>
+    </div>
+
+    <div class="form-group checkbox-group">
+        <label>9 - Choose the type(s) of water pollution</label>
+        <label><input type="checkbox" id="oil"> Oil</label>
+        <label><input type="checkbox" id="fuel"> Fuel</label>
+        <label><input type="checkbox" id="wastes"> Wastes</label>
+        <label><input type="checkbox" id="chemical"> Chemical</label>
+    </div>
+
+    <div class="form-group">
+        <label for="landPollution">10 - Total amount of land pollution generated per month</label>
+        <input type="number" id="landPollution" placeholder="0">
+        <i class="fas fa-landmark"></i>
+        <span>m²/ month</span>
+    </div>
+</div>
+
+</body>
+</html>
