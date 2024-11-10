@@ -229,7 +229,7 @@
             color: #FDBF57;
         }
 
-        /* CTA Buttons */
+        /* New CTA Button for Dashboard */
         .cta-buttons {
             display: flex;
             justify-content: center;
@@ -253,7 +253,6 @@
             color: #FDBF57;
             transform: translateY(-3px);
         }
-
     </style>
 </head>
 <body>
@@ -262,7 +261,7 @@
     <div class="navbar">
         <div class="logo">SUPPLYZAL</div>
         <div>
-            <a href="/Frontend/index.html">Home</a>
+            <a href="/Frontend/index.html#home">Home</a>
             <a href="/Frontend/index.html#contact">Contact</a>
             <a href="/Frontend/index.html#about">About</a>
         </div>
@@ -289,70 +288,86 @@
         <!-- Loading Spinner -->
         <div class="loading" id="loadingSpinner"></div>
 
-        <!-- Tracking Results (Hidden initially) -->
-        <div id="trackingResults" class="tracking-results">
-            <h3>Product Name: Organic Cotton T-shirt</h3>
-            <p><strong>Description:</strong> A sustainable, eco-friendly cotton t-shirt made from organic cotton.</p>
+        <!-- Tracking Results -->
+        <div class="tracking-results" id="trackingResults">
+            <h3></h3>
+            <p></p>
 
-            <!-- Product Lifecycle Timeline -->
-            <div class="timeline-container">
-                <div class="timeline-item">
-                    <i class="fas fa-seedling"></i>
-                    <h4>Raw Material</h4>
-                    <p>Organic cotton sourced from sustainable farms.</p>
-                </div>
-                <div class="timeline-item">
-                    <i class="fas fa-industry"></i>
-                    <h4>Manufacturing</h4>
-                    <p>Manufactured using eco-friendly processes.</p>
-                </div>
-                <div class="timeline-item">
-                    <i class="fas fa-box"></i>
-                    <h4>Packaging</h4>
-                    <p>Packaged with biodegradable materials.</p>
-                </div>
-                <div class="timeline-item">
-                    <i class="fas fa-shipping-fast"></i>
-                    <h4>Shipping</h4>
-                    <p>Shipped via carbon-neutral delivery methods.</p>
-                </div>
-                <div class="timeline-item">
-                    <i class="fas fa-recycle"></i>
-                    <h4>Recycling</h4>
-                    <p>Recycled at end of life or upcycled into new products.</p>
-                </div>
+            <div class="timeline-container"></div>
+
+            <!-- New CTA Button for Dashboard -->
+            <div class="cta-buttons">
+                <a href="dashboard.html">Go to Dashboard</a>
             </div>
-        </div>
-
-        <!-- CTA Buttons -->
-        <div class="cta-buttons">
-            <!-- Initially hidden button -->
-            <a href="#signup" id="detailedDashboard" style="display: none;">Detailed Dashboard</a>
         </div>
     </div>
 
-    <!-- JavaScript to Show Tracking Results on Button Click -->
     <script>
-        // Initially hide tracking results and the Detailed Dashboard button
         document.getElementById("trackingResults").style.display = "none";
-        document.getElementById("detailedDashboard").style.display = "none";
+        document.getElementById("scannerContainer").style.display = "none";
 
         function trackProduct() {
-            document.getElementById("loadingSpinner").style.display = "block"; // Show loading spinner
+            var productCode = document.getElementById("productCode").value.trim();
+            document.getElementById("loadingSpinner").style.display = "block";
+
             setTimeout(function() {
-                document.getElementById("loadingSpinner").style.display = "none"; // Hide loading spinner after 2 seconds
-                document.getElementById("trackingResults").style.display = "flex"; // Show tracking results
-                document.getElementById("detailedDashboard").style.display = "inline-block"; // Show Detailed Dashboard button
+                document.getElementById("loadingSpinner").style.display = "none";
+
+                if (productCode === "7622202030789") {
+                    displayTrackingResults("Cadbury Bournville Dark Chocolate",
+                        "A premium dark chocolate with an intense, indulgent experience. Made with 45% cocoa solids and 25% cocoa butter.",
+                        [
+                            { title: "Ingredients", icon: "fas fa-apple-alt", description: "Sugar, Cocoa solids (45%), Cocoa butter (25%), Milk solids, Emulsifiers (442, 476), Natural and Nature Identical Flavouring." },
+                            { title: "Allergen Information", icon: "fas fa-exclamation-circle", description: "Contains Milk. Manufactured on equipment that also processes products containing tree nuts." },
+                            { title: "Legal Disclaimer", icon: "fas fa-balance-scale", description: "Actual product packaging and materials may contain more or different information than what is shown on the website or app." },
+                            { title: "Description", icon: "fas fa-candy-cane", description: "Cadbury Bournville is a premium dark chocolate, made with sustainably sourced cocoa, perfect for gifting or rewarding yourself." },
+                            { title: "Health Benefits", icon: "fas fa-heart", description: "Lower quantities of sugar. Dark chocolate is known for its health benefits." }
+                        ]);
+                } else if (productCode === "8906147700433") {
+                    displayTrackingResults("Dot & Key 72Hr Hydrating Gel + Probiotics Moisturizer",
+                        "A lightweight gel moisturizer that provides intense hydration and balances your skin's microbiome with probiotics and hyaluronic acid.",
+                        [
+                            { title: "Ingredients", icon: "fas fa-apple-alt", description: "Hyaluronic Acid, Kombucha, Rice Water, Probiotics." },
+                            { title: "Key Benefits", icon: "fas fa-tint", description: "Provides long-lasting hydration, balances skin's microbiome, soothes redness and irritation." },
+                            { title: "Suitable For", icon: "fas fa-skin", description: "Oily, dull, and uneven skin tone. Suitable for all skin types." },
+                            { title: "Legal Disclaimer", icon: "fas fa-balance-scale", description: "Clean formulations: Sulphate-free, Paraben-free, and Cruelty-free." },
+                            { title: "Packaging", icon: "fas fa-box-open", description: "60ml, Packaged by RSH Global Pvt. Ltd." }
+                        ]);
+                } else {
+                    alert("Product code not found.");
+                    document.getElementById("trackingResults").style.display = "none";
+                }
             }, 2000);
         }
 
+        function displayTrackingResults(productName, description, timelineItems) {
+            document.querySelector("#trackingResults h3").textContent = "Product Name: " + productName;
+            document.querySelector("#trackingResults p").textContent = description;
+
+            var timelineContainer = document.querySelector(".timeline-container");
+            timelineContainer.innerHTML = "";
+
+            timelineItems.forEach(function(item) {
+                var timelineItem = document.createElement("div");
+                timelineItem.classList.add("timeline-item");
+                timelineItem.innerHTML = `
+                    <i class="${item.icon}"></i>
+                    <h4>${item.title}</h4>
+                    <p>${item.description}</p>
+                `;
+                timelineContainer.appendChild(timelineItem);
+            });
+
+            document.getElementById("trackingResults").style.display = "flex";
+        }
+
         function startScanner() {
-            document.getElementById("scannerContainer").style.display = "block"; // Show scanner area
+            document.getElementById("scannerContainer").style.display = "block";
             Quagga.init({
                 inputStream: {
                     name: "Live",
                     type: "LiveStream",
-                    target: document.querySelector('#scanner') // Set the target to the 'scanner' div
+                    target: document.querySelector('#scanner')
                 },
                 decoder: {
                     readers: ["code_128_reader", "ean_reader", "ean_8_reader", "upc_reader", "upc_e_reader"]
@@ -365,14 +380,15 @@
                 Quagga.start();
             });
 
-            // Capture barcode result
             Quagga.onDetected(function(data) {
                 var productCode = data.codeResult.code;
-                document.getElementById("productCode").value = productCode; // Set product code to input field
-                trackProduct(); // Automatically trigger product tracking
+                document.getElementById("productCode").value = productCode;
+                trackProduct();
             });
         }
     </script>
 
 </body>
 </html>
+message.txt
+15 KB
