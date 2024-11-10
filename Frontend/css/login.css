@@ -19,11 +19,11 @@ body {
 
 .container {
   background-color: #FFF5E1;
-  padding: 40px;
+  padding: 80px; /* Doubled the padding */
   border-radius: 15px;
   box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
-  max-width: 400px;
-  width: 100%; /* Set to 100% to adapt to screen size */
+  max-width: 800px; /* Doubled the max-width */
+  width: 100%;
   text-align: center;
   transition: transform 0.3s ease;
 }
