@@ -1,20 +1,96 @@
-body {
-    font-family: Arial, sans-serif;
-    text-align: center;
-    margin-top: 50px;
-  }
-  
-  input, button {
-    margin: 10px;
-    padding: 10px;
-    font-size: 16px;
-  }
-  
-  
-  #output {
-    margin-top: 20px;
-    font-size: 18px;
-  }
-  
-  /* Button-like styling for the link */
+/* Basic Reset */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
 
+body {
+  font-family: Arial, sans-serif;
+  background: linear-gradient(145deg, #FDBF57, #821131);
+  color: #333;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  margin: 0;
+}
+
+.container {
+  background-color: #FFF5E1;
+  padding: 40px;
+  border-radius: 15px;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+  max-width: 400px;
+  text-align: center;
+  transition: transform 0.3s ease;
+}
+
+.container:hover {
+  transform: scale(1.03);
+}
+
+h1 {
+  font-size: 26px;
+  color: #821131;
+  margin-bottom: 20px;
+  font-weight: bold;
+}
+
+label {
+  font-size: 16px;
+  color: #333;
+  display: block;
+  margin: 10px 0 5px;
+}
+
+input[type="text"] {
+  width: 100%;
+  padding: 12px;
+  font-size: 16px;
+  border: 1px solid #FDBF57;
+  border-radius: 8px;
+  margin-bottom: 15px;
+  transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+input[type="text"]:focus {
+  border-color: #821131;
+  box-shadow: 0 0 8px rgba(130, 17, 49, 0.5);
+  outline: none;
+}
+
+.wallet-address-block {
+  background-color: #FFD79D;
+  padding: 10px;
+  border-radius: 8px;
+  margin-bottom: 20px;
+  color: #821131;
+}
+
+#wallet-address {
+  font-size: 16px;
+  font-weight: bold;
+}
+
+button {
+  width: 100%;
+  padding: 12px;
+  font-size: 16px;
+  font-weight: bold;
+  color: #FFF5E1;
+  background-color: #821131;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.2s;
+}
+
+button:hover {
+  background-color: #b2163a;
+  transform: translateY(-3px);
+}
+
+button:active {
+  background-color: #9d1433;
+}
