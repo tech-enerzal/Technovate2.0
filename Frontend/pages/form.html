@@ -228,7 +228,20 @@
 
             alert("Data saved successfully!");
         });
+
     });
+    document.getElementById("submitBtn").addEventListener("click", function() {
+        const month = document.getElementById("month").value;
+        const year = document.getElementById("year").value;
+
+        // Simple validation to ensure both month and year are selected
+        if (month === "" || year === "") {
+            alert("Please select both month and year.");
+        } else {
+            // Redirect to the dashboard page
+            window.location.href = "/Frontend/pages/dashboard.html";  
+        }
+    }); 
 </script>
 
 </body>
