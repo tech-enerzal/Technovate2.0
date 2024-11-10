@@ -1,0 +1,377 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Track Product - SUPPLYZAL</title>
+
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+
+    <!-- QuaggaJS CDN -->
+    <script src="https://cdn.jsdelivr.net/npm/quagga@0.12.1/dist/quagga.min.js"></script>
+
+    <!-- Font Awesome CDN (for icons) -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet">
+
+    <style>
+        /* Global Styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        body {
+            background-color: #f7f7f7;
+            color: #333;
+            font-size: 16px;
+            line-height: 1.6;
+            scroll-behavior: smooth;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+
+        /* Navbar */
+        .navbar {
+            background-color: #821131;
+            padding: 20px 40px;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            z-index: 100;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        .navbar a {
+            color: #FDBF57;
+            margin: 0 20px;
+            font-size: 18px;
+            font-weight: 600;
+            transition: color 0.3s ease;
+        }
+
+        .navbar a:hover {
+            color: #fff;
+        }
+
+        .navbar .logo {
+            font-size: 36px;
+            font-weight: 700;
+            color: #FDBF57;
+            text-transform: uppercase;
+        }
+
+        /* Track Product Section */
+        .track-product {
+            background-color: #fff;
+            padding: 80px 20px;
+            text-align: center;
+            margin-top: 100px; /* Offset navbar */
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-start;
+            align-items: center;
+        }
+
+        .track-product h2 {
+            font-size: 36px;
+            font-weight: 700;
+            margin-bottom: 20px;
+            color: #821131;
+        }
+
+        .track-product p {
+            font-size: 18px;
+            margin-bottom: 40px;
+            color: #555;
+        }
+
+        .search-bar {
+            margin-bottom: 40px;
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+        }
+
+        .search-bar input {
+            width: 300px;
+            padding: 10px;
+            font-size: 16px;
+            border: 2px solid #821131;
+            border-radius: 8px;
+        }
+
+        .search-bar button {
+            background-color: #FDBF57;
+            color: #821131;
+            padding: 12px 30px;
+            border: none;
+            border-radius: 8px;
+            font-size: 16px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .search-bar button:hover {
+            background-color: #821131;
+            color: #FDBF57;
+        }
+
+        /* Scanner Button */
+        button {
+            background: linear-gradient(135deg, #FDBF57, #f8a300); /* Gradient Background */
+            color: #821131;
+            padding: 15px 40px;
+            border: none;
+            border-radius: 50px; /* Rounded edges */
+            font-size: 18px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease; /* Smooth transition */
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1); /* Subtle shadow */
+        }
+
+        button:hover {
+            background: linear-gradient(135deg, #821131, #FDBF57); /* Inverted gradient on hover */
+            transform: translateY(-3px); /* Slightly lift the button on hover */
+            color: #fff; /* Change text color */
+        }
+
+        button:focus {
+            outline: none; /* Remove focus outline */
+        }
+
+        /* Scanner Section */
+        .scanner-container {
+            margin-top: 20px;
+            display: none;
+            position: relative;
+            width: 100%;
+            height: 400px;
+            border: 2px solid #821131;
+            border-radius: 8px;
+            background-color: black;
+        }
+
+        #scanner {
+            width: 100%;
+            height: 100%;
+            background-color: black;
+        }
+
+        /* Loading Spinner */
+        .loading {
+            display: none;
+            width: 50px;
+            height: 50px;
+            border: 5px solid #f3f3f3;
+            border-top: 5px solid #821131;
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+            margin: 20px auto;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        /* Tracking Results Section */
+        .tracking-results {
+            max-width: 1200px;
+            width: 100%;
+            margin-top: 40px;
+            padding: 20px;
+            background-color: #f1f1f1;
+            border-radius: 12px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            display: none; /* Hidden initially */
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+            gap: 40px;
+        }
+
+        /* Timeline Container */
+        .timeline-container {
+            display: flex;
+            overflow-x: auto;
+            padding: 20px 0;
+            gap: 20px;
+            justify-content: flex-start;
+        }
+
+        .timeline-item {
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 10px;
+            width: 250px;
+            text-align: center;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .timeline-item i {
+            font-size: 50px;
+            margin-bottom: 15px;
+            color: #FDBF57;
+        }
+
+        /* CTA Buttons */
+        .cta-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            margin-top: 40px;
+        }
+
+        .cta-buttons a {
+            background-color: #FDBF57;
+            color: #821131;
+            padding: 14px 40px;
+            font-size: 18px;
+            border-radius: 50px;
+            text-align: center;
+            transition: background-color 0.3s, transform 0.3s ease;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .cta-buttons a:hover {
+            background-color: #821131;
+            color: #FDBF57;
+            transform: translateY(-3px);
+        }
+
+    </style>
+</head>
+<body>
+
+    <!-- Navbar -->
+    <div class="navbar">
+        <div class="logo">SUPPLYZAL</div>
+        <div>
+            <a href="#home">Home</a>
+            <a href="#contact">Contact</a>
+            <a href="#about">About</a>
+        </div>
+    </div>
+
+    <!-- Track Product Section -->
+    <div class="track-product">
+        <h2>Track Your Product</h2>
+        <p>Enter the product code or scan the barcode to learn more about your product's sustainability journey.</p>
+
+        <!-- Search or Barcode Scanner -->
+        <div class="search-bar">
+            <input type="text" id="productCode" placeholder="Enter Product Code">
+            <button onclick="trackProduct()">Track Product</button>
+        </div>
+
+        <button onclick="startScanner()">Scan Barcode</button>
+
+        <!-- Barcode Scanner -->
+        <div class="scanner-container" id="scannerContainer">
+            <div id="scanner"></div>
+        </div>
+
+        <!-- Loading Spinner -->
+        <div class="loading" id="loadingSpinner"></div>
+
+        <!-- Tracking Results (Hidden initially) -->
+        <div id="trackingResults" class="tracking-results">
+            <h3>Product Name: Organic Cotton T-shirt</h3>
+            <p><strong>Description:</strong> A sustainable, eco-friendly cotton t-shirt made from organic cotton.</p>
+
+            <!-- Product Lifecycle Timeline -->
+            <div class="timeline-container">
+                <div class="timeline-item">
+                    <i class="fas fa-seedling"></i>
+                    <h4>Raw Material</h4>
+                    <p>Organic cotton sourced from sustainable farms.</p>
+                </div>
+                <div class="timeline-item">
+                    <i class="fas fa-industry"></i>
+                    <h4>Manufacturing</h4>
+                    <p>Manufactured using eco-friendly processes.</p>
+                </div>
+                <div class="timeline-item">
+                    <i class="fas fa-box"></i>
+                    <h4>Packaging</h4>
+                    <p>Packaged with biodegradable materials.</p>
+                </div>
+                <div class="timeline-item">
+                    <i class="fas fa-shipping-fast"></i>
+                    <h4>Shipping</h4>
+                    <p>Shipped via carbon-neutral delivery methods.</p>
+                </div>
+                <div class="timeline-item">
+                    <i class="fas fa-recycle"></i>
+                    <h4>Recycling</h4>
+                    <p>Recycled at end of life or upcycled into new products.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- CTA Buttons -->
+        <div class="cta-buttons">
+            <!-- Initially hidden button -->
+            <a href="#signup" id="detailedDashboard" style="display: none;">Detailed Dashboard</a>
+        </div>
+    </div>
+
+    <!-- JavaScript to Show Tracking Results on Button Click -->
+    <script>
+        // Initially hide tracking results and the Detailed Dashboard button
+        document.getElementById("trackingResults").style.display = "none";
+        document.getElementById("detailedDashboard").style.display = "none";
+
+        function trackProduct() {
+            document.getElementById("loadingSpinner").style.display = "block"; // Show loading spinner
+            setTimeout(function() {
+                document.getElementById("loadingSpinner").style.display = "none"; // Hide loading spinner after 2 seconds
+                document.getElementById("trackingResults").style.display = "flex"; // Show tracking results
+                document.getElementById("detailedDashboard").style.display = "inline-block"; // Show Detailed Dashboard button
+            }, 2000);
+        }
+
+        function startScanner() {
+            document.getElementById("scannerContainer").style.display = "block"; // Show scanner area
+            Quagga.init({
+                inputStream: {
+                    name: "Live",
+                    type: "LiveStream",
+                    target: document.querySelector('#scanner') // Set the target to the 'scanner' div
+                },
+                decoder: {
+                    readers: ["code_128_reader", "ean_reader", "ean_8_reader", "upc_reader", "upc_e_reader"]
+                }
+            }, function(err) {
+                if (err) {
+                    console.log(err);
+                    return;
+                }
+                Quagga.start();
+            });
+
+            // Capture barcode result
+            Quagga.onDetected(function(data) {
+                var productCode = data.codeResult.code;
+                document.getElementById("productCode").value = productCode; // Set product code to input field
+                trackProduct(); // Automatically trigger product tracking
+            });
+        }
+    </script>
+
+</body>
+</html>
+message.txt
+13 KB

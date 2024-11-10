@@ -1,0 +1,105 @@
+* {
+    box-sizing: border-box;
+    font-family: "Poppins", sans-serif;
+    margin: 0;
+    padding: 0;
+}
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    background-color: #f1e3d4;
+    color: #821131;
+    animation: fadeIn 1s ease-in;
+}
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+.container {
+    background: linear-gradient(145deg, #fff8e7, #f7e0c6);
+    border-radius: 15px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    width: 90%;
+    max-width: 900px;
+    padding: 40px;
+    margin: 20px;
+    position: relative;
+    overflow: hidden;
+    animation: slideIn 1s ease-out;
+}
+@keyframes slideIn {
+    from { transform: translateY(30px); opacity: 0; }
+    to { transform: translateY(0); opacity: 1; }
+}
+.container h1 {
+    text-align: center;
+    font-size: 1.8em;
+    margin-bottom: 20px;
+    color: #821131;
+}
+.form-group {
+    margin-bottom: 20px;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+}
+label {
+    font-size: 1em;
+    color: #821131;
+    margin-bottom: 5px;
+}
+input[type="text"],
+input[type="number"],
+select {
+    width: 100%;
+    padding: 10px 15px 10px 45px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    font-size: 1em;
+    transition: border 0.3s ease, box-shadow 0.3s ease;
+}
+input:focus,
+select:focus {
+    border-color: #FDBF57;
+    outline: none;
+    box-shadow: 0 0 8px rgba(253, 191, 87, 0.5);
+}
+.checkbox-group label {
+    font-size: 1em;
+    margin-right: 15px;
+    color: #821131;
+}
+.checkbox-group input[type="checkbox"] {
+    margin-right: 5px;
+    accent-color: #FDBF57;
+    transition: transform 0.2s;
+}
+.checkbox-group input[type="checkbox"]:hover {
+    transform: scale(1.1);
+}
+.form-group i {
+    position: absolute;
+    left: 15px;
+    top: 45%;
+    transform: translateY(-50%);
+    color: #FDBF57;
+    font-size: 1.2em;
+    transition: color 0.3s ease;
+}
+
+.submit-button {
+    background-color: #4CAF50;
+    color: white;
+    padding: 12px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: background-color 0.3s ease;
+}
+
+.submit-button:hover {
+    background-color: #45a049;
+}
