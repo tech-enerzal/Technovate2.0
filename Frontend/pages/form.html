@@ -10,129 +10,226 @@
     <!-- Font Awesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <link rel="stylesheet" href="/Frontend/css/form.css">
-    <script src="/Frontend/js/form.js"></script>
 </head>
 <body>
 
-<div class="container">
-    <h1>Environmental Sustainability Assessment</h1>
-
-    <div class="select-container form-group">
-        <label for="month">Select Month:</label>
-        <select id="month">
-            <option value="">Choose Month</option>
-            <option value="01">January</option>
-            <option value="02">February</option>
-            <option value="03">March</option>
-            <option value="04">April</option>
-            <option value="05">May</option>
-            <option value="06">June</option>
-            <option value="07">July</option>
-            <option value="08">August</option>
-            <option value="09">September</option>
-            <option value="10">October</option>
-            <option value="11">November</option>
-            <option value="12">December</option>
-        </select>
+    <div class="container">
+        <h1>Environmental Sustainability Assessment</h1>
     
-        <label for="year">Select Year:</label>
-        <select id="year">
-            <option value="">Choose Year</option>
-            <!-- Example range, adjust as needed -->
-            <script>
-                const currentYear = new Date().getFullYear();
-                for (let i = currentYear; i >= 2000; i--) {
-                    document.write(`<option value="${i}">${i}</option>`);
-                }
-            </script>
-        </select>
-        <small class="error-message">Please select both month and year.</small>
+        <div class="select-container form-group">
+            <label for="month">Select Month:</label>
+            <select id="month">
+                <option value="">Choose Month</option>
+                <option value="01" selected>January</option>
+                <option value="02">February</option>
+                <option value="03">March</option>
+                <option value="04">April</option>
+                <option value="05">May</option>
+                <option value="06">June</option>
+                <option value="07">July</option>
+                <option value="08">August</option>
+                <option value="09">September</option>
+                <option value="10">October</option>
+                <option value="11">November</option>
+                <option value="12">December</option>
+            </select>
+        
+            <label for="year">Select Year:</label>
+            <select id="year">
+                <option value="">Choose Year</option>
+                <script>
+                    const currentYear = new Date().getFullYear();
+                    for (let i = currentYear; i >= 2000; i--) {
+                        const selected = i === currentYear ? 'selected' : ''; // Default to the current year
+                        document.write(`<option value="${i}" ${selected}>${i}</option>`);
+                    }
+                </script>
+            </select>
+            <small class="error-message">Please select both month and year.</small>
+        </div>
+        
+        <h2>Monthly Sustainibility KPI Update</h2>
+    
+        <div class="form-group">
+            <label for="energyUsed">1 - Total amount of energy used per month</label>
+            <input type="number" id="energyUsed" placeholder="Enter kwh" min="0" value="100">
+            <i class="fas fa-bolt"></i>
+            <span>kWh/ month</span>
+            <small class="error-message">Please enter a valid energy usage amount.</small>
+        </div>
+    
+        <div class="form-group">
+            <label for="renewableEnergy">2 - Total amount of renewable energy used in energy consumption per month</label>
+            <input type="number" id="renewableEnergy" placeholder="Enter kwh" min="0" value="50">
+            <i class="fas fa-leaf"></i>
+            <span>kWh/ month</span>
+            <small class="error-message">Please enter a valid renewable energy usage amount.</small>
+        </div>
+    
+        <div class="form-group">
+            <label for="waterUsed">3 - Total amount of water used per month</label>
+            <input type="number" id="waterUsed" placeholder="Enter Value in tens" min="0" value="30">
+            <i class="fas fa-tint"></i>
+            <span>m³/ month</span>
+            <small class="error-message">Please enter a valid water usage amount.</small>
+        </div>
+    
+        <div class="form-group">
+            <label for="recycledWater">4 - Total amount of recycled or reused water used in water consumption per month</label>
+            <input type="number" id="recycledWater" placeholder="Enter Value in tens" min="0" value="10">
+            <i class="fas fa-recycle"></i>
+            <span>m³/ month</span>
+            <small class="error-message">Please enter a valid recycled water usage amount.</small>
+        </div>
+    
+        <div class="form-group">
+            <label for="materialsUsed">5 - Total amount of materials other than water used per month</label>
+            <input type="number" id="materialsUsed" placeholder="Enter Value in tens" min="0" value="25">
+            <i class="fas fa-cube"></i>
+            <span>kg/ month</span>
+            <small class="error-message">Please enter a valid material usage amount.</small>
+        </div>
+    
+        <div class="form-group">
+            <label for="recycledMaterials">6 - Total amount of recycled or reused materials in material consumption per month</label>
+            <input type="number" id="recycledMaterials" placeholder="Enter Value in tens" min="0" value="15">
+            <i class="fas fa-sync-alt"></i>
+            <span>kg/ month</span>
+            <small class="error-message">Please enter a valid recycled material usage amount.</small>
+        </div>
+    
+        <div class="form-group">
+            <label for="emissions">7 - Total amount of greenhouse gas emissions generated per month</label>
+            <input type="number" id="emissions" placeholder="Enter Value in 0.00" step="0.01" min="0" value="5.00">
+            <i class="fas fa-smog"></i>
+            <span>tonnes of CO₂e/ month</span>
+            <small class="error-message">Please enter a valid emissions amount.</small>
+        </div>
+    
+        <div class="form-group">
+            <label for="waterPollution">8 - Total amount of water pollution generated per month</label>
+            <input type="number" id="waterPollution" placeholder="Enter Value in units" min="0" value="2">
+            <i class="fas fa-water"></i>
+            <span>m³/ month</span>
+            <small class="error-message">Please enter a valid water pollution amount.</small>
+        </div>
+    
+        <div class="form-group checkbox-group">
+            <label>9 - Choose the type(s) of water pollution</label>
+            <label><input type="checkbox" id="oil" checked> Oil</label>
+            <label><input type="checkbox" id="fuel" checked> Fuel</label>
+            <label><input type="checkbox" id="wastes"> Wastes</label>
+            <label><input type="checkbox" id="chemical"> Chemical</label>
+        </div>
+    
+        <div class="form-group">
+            <label for="landPollution">10 - Total amount of land pollution generated per month</label>
+            <input type="number" id="landPollution" placeholder="Enter Value in units" min="0" value="10">
+            <i class="fas fa-landmark"></i>
+            <span>m²/ month</span>
+            <small class="error-message">Please enter a valid land pollution amount.</small>
+        </div>
+    
+        <button type="button" id="submitButton" class="submit-button">Submit</button>
     </div>
     
-    <h2>Monthly Sustainibility KPI Update</h2>
 
-    <div class="form-group">
-        <label for="energyUsed">1 - Total amount of energy used per month</label>
-        <input type="number" id="energyUsed" placeholder="Enter kwh" min="0">
-        <i class="fas fa-bolt"></i>
-        <span>kWh/ month</span>
-        <small class="error-message">Please enter a valid energy usage amount.</small>
-    </div>
+<!-- Include Web3.js and your script files -->
+<script src="https://cdn.jsdelivr.net/npm/web3@1.8.0/dist/web3.min.js"></script>
+<script>
+    let web3, contract;
+    const contractAddress = "0xe7Ab5D09b17e49a9a5c30813f22588f5CdffE66b"; // Use your actual deployed contract address
+    const abi = [
+        {
+            "inputs": [
+                { "internalType": "uint256", "name": "_month", "type": "uint256" },
+                { "internalType": "uint256", "name": "_year", "type": "uint256" },
+                { "internalType": "tuple", "name": "_energyData", "type": "tuple", "components": [
+                    { "internalType": "uint256", "name": "energyUsed", "type": "uint256" },
+                    { "internalType": "uint256", "name": "renewableEnergy", "type": "uint256" }
+                ] },
+                { "internalType": "tuple", "name": "_waterData", "type": "tuple", "components": [
+                    { "internalType": "uint256", "name": "waterUsed", "type": "uint256" },
+                    { "internalType": "uint256", "name": "recycledWater", "type": "uint256" }
+                ] },
+                { "internalType": "tuple", "name": "_materialData", "type": "tuple", "components": [
+                    { "internalType": "uint256", "name": "materialsUsed", "type": "uint256" },
+                    { "internalType": "uint256", "name": "recycledMaterials", "type": "uint256" }
+                ] },
+                { "internalType": "tuple", "name": "_pollutionData", "type": "tuple", "components": [
+                    { "internalType": "uint256", "name": "emissions", "type": "uint256" },
+                    { "internalType": "uint256", "name": "waterPollution", "type": "uint256" },
+                    { "internalType": "uint256", "name": "landPollution", "type": "uint256" }
+                ] },
+                { "internalType": "bool[4]", "name": "_waterPollutionTypes", "type": "bool[4]" }
+            ],
+            "name": "saveEnvironmentalData",
+            "outputs": [],
+            "stateMutability": "nonpayable",
+            "type": "function"
+        }
+    ];
 
-    <div class="form-group">
-        <label for="renewableEnergy">2 - Total amount of renewable energy used in energy consumption per month</label>
-        <input type="number" id="renewableEnergy" placeholder="Enter kwh" min="0">
-        <i class="fas fa-leaf"></i>
-        <span>kWh/ month</span>
-        <small class="error-message">Please enter a valid renewable energy usage amount.</small>
-    </div>
+    window.addEventListener('DOMContentLoaded', async () => {
+        if (window.ethereum) {
+            web3 = new Web3(window.ethereum);
+            try {
+                await window.ethereum.enable(); // Request access to MetaMask
+            } catch (error) {
+                console.error("User denied account access");
+            }
+        } else {
+            console.log("MetaMask is not installed");
+        }
 
-    <div class="form-group">
-        <label for="waterUsed">3 - Total amount of water used per month</label>
-        <input type="number" id="waterUsed" placeholder="Enter Value in tens" min="0">
-        <i class="fas fa-tint"></i>
-        <span>m³/ month</span>
-        <small class="error-message">Please enter a valid water usage amount.</small>
-    </div>
+        document.getElementById('submitButton').addEventListener('click', async () => {
+            const month = document.getElementById('month').value;
+            const year = document.getElementById('year').value;
 
-    <div class="form-group">
-        <label for="recycledWater">4 - Total amount of recycled or reused water used in water consumption per month</label>
-        <input type="number" id="recycledWater" placeholder="Enter Value in tens" min="0">
-        <i class="fas fa-recycle"></i>
-        <span>m³/ month</span>
-        <small class="error-message">Please enter a valid recycled water usage amount.</small>
-    </div>
+            const energyUsed = parseInt(document.getElementById('energyUsed').value);
+            const renewableEnergy = parseInt(document.getElementById('renewableEnergy').value);
+            const waterUsed = parseInt(document.getElementById('waterUsed').value);
+            const recycledWater = parseInt(document.getElementById('recycledWater').value);
+            const materialsUsed = parseInt(document.getElementById('materialsUsed').value);
+            const recycledMaterials = parseInt(document.getElementById('recycledMaterials').value);
+            const emissions = parseInt(document.getElementById('emissions').value);
+            const waterPollution = parseInt(document.getElementById('waterPollution').value);
+            const landPollution = parseInt(document.getElementById('landPollution').value);
+            
+            const oil = document.getElementById('oil').checked;
+            const fuel = document.getElementById('fuel').checked;
+            const wastes = document.getElementById('wastes').checked;
+            const chemical = document.getElementById('chemical').checked;
 
-    <div class="form-group">
-        <label for="materialsUsed">5 - Total amount of materials other than water used per month</label>
-        <input type="number" id="materialsUsed" placeholder="Enter Value in tens" min="0">
-        <i class="fas fa-cube"></i>
-        <span>kg/ month</span>
-        <small class="error-message">Please enter a valid material usage amount.</small>
-    </div>
+            const waterPollutionTypes = [oil, fuel, wastes, chemical];
 
-    <div class="form-group">
-        <label for="recycledMaterials">6 - Total amount of recycled or reused materials in material consumption per month</label>
-        <input type="number" id="recycledMaterials" placeholder="Enter Value in tens" min="0">
-        <i class="fas fa-sync-alt"></i>
-        <span>kg/ month</span>
-        <small class="error-message">Please enter a valid recycled material usage amount.</small>
-    </div>
+            if (!month || !year) {
+                alert("Please select both month and year.");
+                return;
+            }
 
-    <div class="form-group">
-        <label for="emissions">7 - Total amount of greenhouse gas emissions generated per month</label>
-        <input type="number" id="emissions" placeholder="Enter Value in 0.00" step="0.01" min="0">
-        <i class="fas fa-smog"></i>
-        <span>tonnes of CO₂e/ month</span>
-        <small class="error-message">Please enter a valid emissions amount.</small>
-    </div>
+            if (!energyUsed || !renewableEnergy || !waterUsed || !recycledWater || !materialsUsed || !recycledMaterials || !emissions || !waterPollution || !landPollution) {
+                alert("Please fill in all required fields.");
+                return;
+            }
 
-    <div class="form-group">
-        <label for="waterPollution">8 - Total amount of water pollution generated per month</label>
-        <input type="number" id="waterPollution" placeholder="Enter Value in units" min="0">
-        <i class="fas fa-water"></i>
-        <span>m³/ month</span>
-        <small class="error-message">Please enter a valid water pollution amount.</small>
-    </div>
+            const accounts = await web3.eth.getAccounts();
+            const account = accounts[0];
 
-    <div class="form-group checkbox-group">
-        <label>9 - Choose the type(s) of water pollution</label>
-        <label><input type="checkbox" id="oil"> Oil</label>
-        <label><input type="checkbox" id="fuel"> Fuel</label>
-        <label><input type="checkbox" id="wastes"> Wastes</label>
-        <label><input type="checkbox" id="chemical"> Chemical</label>
-    </div>
+            contract = new web3.eth.Contract(abi, contractAddress);
+            await contract.methods.saveEnvironmentalData(
+                month, year, 
+                [energyUsed, renewableEnergy], 
+                [waterUsed, recycledWater], 
+                [materialsUsed, recycledMaterials], 
+                [emissions, waterPollution, landPollution], 
+                waterPollutionTypes
+            ).send({ from: account });
 
-    <div class="form-group">
-        <label for="landPollution">10 - Total amount of land pollution generated per month</label>
-        <input type="number" id="landPollution" placeholder="Enter Value in units" min="0">
-        <i class="fas fa-landmark"></i>
-        <span>m²/ month</span>
-        <small class="error-message">Please enter a valid land pollution amount.</small>
-    </div>
-
-    <button type="button" class="submit-button">Submit</button>
-</div>
+            alert("Data saved successfully!");
+        });
+    });
+</script>
 
 </body>
 </html>
