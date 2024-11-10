@@ -1,222 +1,269 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Environmental Sustainability Dashboard</title>
     <!-- Google Fonts -->
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap"
+      rel="stylesheet"
+    />
     <!-- Chart.js CDN -->
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="style.css" />
     <style>
-        body {
-            font-family: 'Poppins', sans-serif;
-            background-color: #f7f7f7;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            min-height: 100vh;
-            overflow: hidden; /* Prevent scrolling */
-        }
-        h1 {
-            text-align: center;
-            margin-bottom: 20px;
-            color: #821131;
-        }
-        .dashboard-container {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 15px;
-            padding: 20px;
-            max-width: 100vw;
-            max-height: 100vh;
-            box-sizing: border-box;
-        }
-        .chart-container {
-            width: 100%;
-            height: 200px; /* Smaller height for compact layout */
-            background-color: white;
-            padding: 10px;
-            border-radius: 8px;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-        canvas {
-            max-width: 100%;
-            max-height: 100%;
-        }
+      body {
+        font-family: "Poppins", sans-serif;
+        background-color: #f7f7f7;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        min-height: 100vh;
+      }
+      h1 {
+        text-align: center;
+        margin-bottom: 20px;
+        color: #821131;
+      }
+      .dashboard-container {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 15px;
+        padding: 20px;
+        max-width: 100vw;
+        max-height: 100vh;
+        box-sizing: border-box;
+      }
+      .chart-container {
+        width: 100%;
+        height: 200px; /* Smaller height for compact layout */
+        background-color: white;
+        padding: 10px;
+        border-radius: 8px;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+      canvas {
+        max-width: 100%;
+        max-height: 100%;
+      }
     </style>
-</head>
-<body>
-
+  </head>
+  <body>
     <div>
-        <h1>Environmental Sustainability Dashboard</h1>
-        <div class="dashboard-container">
-            <!-- Energy Consumption -->
-            <div class="chart-container">
-                <canvas id="energyConsumptionChart"></canvas>
-            </div>
-            
-            <!-- Renewable Energy Usage -->
-            <div class="chart-container">
-                <canvas id="renewableEnergyChart"></canvas>
-            </div>
-            
-            <!-- Water Consumption -->
-            <div class="chart-container">
-                <canvas id="waterUsageChart"></canvas>
-            </div>
-            
-            <!-- Recycled Water Usage -->
-            <div class="chart-container">
-                <canvas id="recycledWaterChart"></canvas>
-            </div>
-            
-            <!-- Material Consumption -->
-            <div class="chart-container">
-                <canvas id="materialUsageChart"></canvas>
-            </div>
-            
-            <!-- Recycled Material Usage -->
-            <div class="chart-container">
-                <canvas id="recycledMaterialChart"></canvas>
-            </div>
-            
-            <!-- Emissions Tracking -->
-            <div class="chart-container">
-                <canvas id="emissionsChart"></canvas>
-            </div>
-            
-            <!-- Water Pollution Levels -->
-            <div class="chart-container">
-                <canvas id="waterPollutionChart"></canvas>
-            </div>
-            
-            <!-- Land Pollution -->
-            <div class="chart-container">
-                <canvas id="landPollutionChart"></canvas>
-            </div>
+      <h1>Environmental Sustainability Dashboard</h1>
+
+      <div style="text-align: center; margin-bottom: 20px;">
+        <label for="startMonth">Start Month: </label>
+        <select id="startMonth">
+            <option value="0">January</option>
+            <option value="1">February</option>
+            <option value="2">March</option>
+            <option value="3">April</option>
+            <option value="4">May</option>
+            <option value="5">June</option>
+            <option value="6">July</option>
+            <option value="7">August</option>
+            <option value="8">September</option>
+            <option value="9">October</option>
+            <option value="10">November</option>
+            <option value="11">December</option>
+        </select>
+
+        <label for="endMonth">End Month: </label>
+        <select id="endMonth">
+            <option value="0">January</option>
+            <option value="1">February</option>
+            <option value="2">March</option>
+            <option value="3">April</option>
+            <option value="4">May</option>
+            <option value="5">June</option>
+            <option value="6">July</option>
+            <option value="7">August</option>
+            <option value="8">September</option>
+            <option value="9">October</option>
+            <option value="10">November</option>
+            <option value="11">December</option>
+        </select>
+        
+        <button onclick="updateCharts()">Update Charts</button>
+    </div>
+    
+    <div class="dashboard-container">
+        <!-- Energy Consumption -->
+        <div class="chart-container">
+          <canvas id="energyConsumptionChart"></canvas>
         </div>
+
+        <!-- Renewable Energy Usage -->
+        <div class="chart-container">
+          <canvas id="renewableEnergyChart"></canvas>
+        </div>
+
+        <!-- Water Consumption -->
+        <div class="chart-container">
+          <canvas id="waterUsageChart"></canvas>
+        </div>
+
+        <!-- Recycled Water Usage -->
+        <div class="chart-container">
+          <canvas id="recycledWaterChart"></canvas>
+        </div>
+
+        <!-- Material Consumption -->
+        <div class="chart-container">
+          <canvas id="materialUsageChart"></canvas>
+        </div>
+
+        <!-- Recycled Material Usage -->
+        <div class="chart-container">
+          <canvas id="recycledMaterialChart"></canvas>
+        </div>
+
+        <!-- Emissions Tracking -->
+        <div class="chart-container">
+          <canvas id="emissionsChart"></canvas>
+        </div>
+
+        <!-- Water Pollution Levels -->
+        <div class="chart-container">
+          <canvas id="waterPollutionChart"></canvas>
+        </div>
+
+        <!-- Land Pollution -->
+        <div class="chart-container">
+          <canvas id="landPollutionChart"></canvas>
+        </div>
+      </div>
     </div>
 
     <script>
-        // Function to fetch data from blockchain (replace this with actual blockchain call)
         async function fetchData() {
-            // Sample data; replace with real blockchain data
+            const months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
+            
+            // Helper function to generate fluctuating data within a range
+            function generateFluctuatingData(min, max) {
+                return Array.from({ length: 12 }, () => Math.floor(Math.random() * (max - min + 1)) + min);
+            }
+        
             return {
-                months: ["January", "February", "March", "April", "May"],
-                energyData: [200, 180, 220, 210, 230],
-                renewableEnergyData: [50, 70, 90, 100, 120],
-                waterData: [300, 280, 290, 310, 320],
-                recycledWaterData: [100, 120, 140, 130, 150],
-                materialData: [400, 380, 420, 410, 430],
-                recycledMaterialData: [150, 160, 170, 180, 190],
-                emissionsData: [20, 18, 22, 21, 23],
-                waterPollutionData: [30, 32, 35, 31, 34],
-                landPollutionData: [15, 17, 14, 16, 18]
+                months: months,
+                energyData: generateFluctuatingData(180, 300),           // Energy consumption in kWh
+                renewableEnergyData: generateFluctuatingData(50, 200),   // Renewable energy in kWh
+                waterData: generateFluctuatingData(250, 400),            // Water consumption in cubic meters
+                recycledWaterData: generateFluctuatingData(80, 250),     // Recycled water in cubic meters
+                materialData: generateFluctuatingData(350, 500),         // Material consumption in kg
+                recycledMaterialData: generateFluctuatingData(100, 300), // Recycled material in kg
+                emissionsData: generateFluctuatingData(10, 35),          // Emissions in tonnes of CO₂e
+                waterPollutionData: generateFluctuatingData(20, 45),     // Water pollution in cubic meters
+                landPollutionData: generateFluctuatingData(10, 30)       // Land pollution in square meters
             };
         }
-
-        // Initialize charts
-        async function initCharts() {
-            const data = await fetchData();
-
-            new Chart(document.getElementById('energyConsumptionChart'), {
-                type: 'bar',
-                data: {
-                    labels: data.months,
-                    datasets: [{ label: 'Energy Consumption (kWh)', data: data.energyData, backgroundColor: '#821131' }]
-                }
-            });
-
-            new Chart(document.getElementById('renewableEnergyChart'), {
-                type: 'pie',
-                data: {
-                    labels: ['Renewable', 'Non-renewable'],
-                    datasets: [{
-                        data: [
-                            data.renewableEnergyData.reduce((a, b) => a + b, 0), 
-                            data.energyData.reduce((a, b) => a + b, 0) - data.renewableEnergyData.reduce((a, b) => a + b, 0)
-                        ],
-                        backgroundColor: ['#fdbf57', '#821131']
-                    }]
-                }
-            });
-
-            new Chart(document.getElementById('waterUsageChart'), {
-                type: 'line',
-                data: {
-                    labels: data.months,
-                    datasets: [{ label: 'Water Consumption (m³)', data: data.waterData, borderColor: '#821131', fill: false }]
-                }
-            });
-
-            new Chart(document.getElementById('recycledWaterChart'), {
-                type: 'doughnut',
-                data: {
-                    labels: ['Recycled Water', 'Fresh Water'],
-                    datasets: [{
-                        data: [
-                            data.recycledWaterData.reduce((a, b) => a + b, 0), 
-                            data.waterData.reduce((a, b) => a + b, 0) - data.recycledWaterData.reduce((a, b) => a + b, 0)
-                        ],
-                        backgroundColor: ['#fdbf57', '#821131']
-                    }]
-                }
-            });
-
-            new Chart(document.getElementById('materialUsageChart'), {
-                type: 'bar',
-                data: {
-                    labels: data.months,
-                    datasets: [{ label: 'Material Consumption (kg)', data: data.materialData, backgroundColor: '#821131' }]
-                }
-            });
-
-            new Chart(document.getElementById('recycledMaterialChart'), {
-                type: 'pie',
-                data: {
-                    labels: ['Recycled Material', 'New Material'],
-                    datasets: [{
-                        data: [
-                            data.recycledMaterialData.reduce((a, b) => a + b, 0), 
-                            data.materialData.reduce((a, b) => a + b, 0) - data.recycledMaterialData.reduce((a, b) => a + b, 0)
-                        ],
-                        backgroundColor: ['#fdbf57', '#821131']
-                    }]
-                }
-            });
-
-            new Chart(document.getElementById('emissionsChart'), {
-                type: 'line',
-                data: {
-                    labels: data.months,
-                    datasets: [{ label: 'Emissions (tonnes of CO₂e)', data: data.emissionsData, borderColor: '#821131', fill: false }]
-                }
-            });
-
-            new Chart(document.getElementById('waterPollutionChart'), {
-                type: 'bar',
-                data: {
-                    labels: data.months,
-                    datasets: [{ label: 'Water Pollution (m³)', data: data.waterPollutionData, backgroundColor: '#fdbf57' }]
-                }
-            });
-
-            new Chart(document.getElementById('landPollutionChart'), {
-                type: 'bar',
-                data: {
-                    labels: data.months,
-                    datasets: [{ label: 'Land Pollution (m²)', data: data.landPollutionData, backgroundColor: '#821131' }]
-                }
-            });
+        
+        function getSelectedRange() {
+            const startMonth = parseInt(document.getElementById('startMonth').value);
+            const endMonth = parseInt(document.getElementById('endMonth').value);
+            return { startMonth, endMonth };
         }
 
-        // Load charts on page load
+        async function updateCharts() {
+            const { startMonth, endMonth } = getSelectedRange();
+            const allData = await fetchData();
+
+            const filteredData = {
+                months: allData.months.slice(startMonth, endMonth + 1),
+                energyData: allData.energyData.slice(startMonth, endMonth + 1),
+                renewableEnergyData: allData.renewableEnergyData.slice(startMonth, endMonth + 1),
+                waterData: allData.waterData.slice(startMonth, endMonth + 1),
+                recycledWaterData: allData.recycledWaterData.slice(startMonth, endMonth + 1),
+                materialData: allData.materialData.slice(startMonth, endMonth + 1),
+                recycledMaterialData: allData.recycledMaterialData.slice(startMonth, endMonth + 1),
+                emissionsData: allData.emissionsData.slice(startMonth, endMonth + 1),
+                waterPollutionData: allData.waterPollutionData.slice(startMonth, endMonth + 1),
+                landPollutionData: allData.landPollutionData.slice(startMonth, endMonth + 1)
+            };
+
+            charts.forEach(chart => chart.destroy());
+            drawCharts(filteredData);
+        }
+
+        function drawCharts(data) {
+            charts = [
+                new Chart(document.getElementById('energyConsumptionChart'), {
+                    type: 'bar',
+                    data: { labels: data.months, datasets: [{ label: 'Energy Consumption (kWh)', data: data.energyData, backgroundColor: '#821131' }] }
+                }),
+                new Chart(document.getElementById('renewableEnergyChart'), {
+                    type: 'pie',
+                    data: {
+                        labels: ['Renewable', 'Non-renewable'],
+                        datasets: [{
+                            data: [
+                                data.renewableEnergyData.reduce((a, b) => a + b, 0),
+                                data.energyData.reduce((a, b) => a + b, 0) - data.renewableEnergyData.reduce((a, b) => a + b, 0)
+                            ],
+                            backgroundColor: ['#fdbf57', '#821131']
+                        }]
+                    }
+                }),
+                new Chart(document.getElementById('waterUsageChart'), {
+                    type: 'line',
+                    data: { labels: data.months, datasets: [{ label: 'Water Consumption (m³)', data: data.waterData, borderColor: '#821131', fill: false }] }
+                }),
+                new Chart(document.getElementById('recycledWaterChart'), {
+                    type: 'doughnut',
+                    data: {
+                        labels: ['Recycled Water', 'Fresh Water'],
+                        datasets: [{
+                            data: [
+                                data.recycledWaterData.reduce((a, b) => a + b, 0),
+                                data.waterData.reduce((a, b) => a + b, 0) - data.recycledWaterData.reduce((a, b) => a + b, 0)
+                            ],
+                            backgroundColor: ['#fdbf57', '#821131']
+                        }]
+                    }
+                }),
+                new Chart(document.getElementById('materialUsageChart'), {
+                    type: 'bar',
+                    data: { labels: data.months, datasets: [{ label: 'Material Consumption (kg)', data: data.materialData, backgroundColor: '#821131' }] }
+                }),
+                new Chart(document.getElementById('recycledMaterialChart'), {
+                    type: 'pie',
+                    data: {
+                        labels: ['Recycled Material', 'New Material'],
+                        datasets: [{
+                            data: [
+                                data.recycledMaterialData.reduce((a, b) => a + b, 0),
+                                data.materialData.reduce((a, b) => a + b, 0) - data.recycledMaterialData.reduce((a, b) => a + b, 0)
+                            ],
+                            backgroundColor: ['#fdbf57', '#821131']
+                        }]
+                    }
+                }),
+                new Chart(document.getElementById('emissionsChart'), {
+                    type: 'line',
+                    data: { labels: data.months, datasets: [{ label: 'Emissions (tonnes of CO₂e)', data: data.emissionsData, borderColor: '#821131', fill: false }] }
+                }),
+                new Chart(document.getElementById('waterPollutionChart'), {
+                    type: 'bar',
+                    data: { labels: data.months, datasets: [{ label: 'Water Pollution (m³)', data: data.waterPollutionData, backgroundColor: '#fdbf57' }] }
+                }),
+                new Chart(document.getElementById('landPollutionChart'), {
+                    type: 'bar',
+                    data: { labels: data.months, datasets: [{ label: 'Land Pollution (m²)', data: data.landPollutionData, backgroundColor: '#821131' }] }
+                })
+            ];
+        }
+
+        async function initCharts() {
+            const data = await fetchData();
+            drawCharts(data);
+        }
+
         initCharts();
     </script>
-</body>
+  </body>
 </html>
