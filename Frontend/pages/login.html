@@ -9,26 +9,22 @@
 <body>
   <div class="container">
     <h1>Login with MetaMask</h1>
-    
+
     <!-- Username Input Block -->
     <label for="username">Username:</label>
     <input type="text" id="username" placeholder="Enter your username" required>
-    
+
     <!-- Display Wallet Address Block -->
-    <div>
+    <div class="wallet-address-block">
       <label>Wallet Address:</label>
       <div id="wallet-address">Not connected</div>
     </div>
 
-    <!-- Store Button to trigger storing user data -->
-    <button id="store-button">Store User Data</button>
-
+    <!-- Track Product Button -->
     <button id="track-button" onclick="navigateToTrackPage()">Track Your Product</button>
   </div>
 
-  <!-- Include the updated app.js or script.js -->
   <script src="https://cdn.jsdelivr.net/npm/ethers@5.7.2/dist/ethers.min.js"></script>
-
   <script src="/Frontend/js/login.js"></script>
 </body>
 </html>
